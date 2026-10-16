@@ -16,8 +16,8 @@ Hypotize does not run A/B tests or assign traffic. It keeps the record before an
 
 ## Install
 
-- **Claude Code**: `/plugin marketplace add viluca94/hypotize-plugin`, then `/plugin install hypotize`.
-- **Codex**: `codex plugin marketplace add viluca94/hypotize-plugin`.
+- **Claude Code**: `/plugin marketplace add hypotizeai/hypotize-plugin`, then `/plugin install hypotize`.
+- **Codex**: `codex plugin marketplace add hypotizeai/hypotize-plugin`.
 - **Cursor**: install Hypotize from the Cursor Marketplace, or add `https://api.hypotize.ai/mcp` in Settings → MCP.
 - **Grok Bot**: open Connect apps and add Hypotize. If it is not listed yet, add a custom MCP server with `https://api.hypotize.ai/mcp`.
 - **Any MCP client**: add `https://api.hypotize.ai/mcp` as a remote MCP server. Setup guides: https://hypotize.ai/mcp

@@ -7,7 +7,7 @@
     "email": "hello@hypotize.ai"
   },
   "homepage": "https://hypotize.ai/mcp",
-  "repository": "https://github.com/viluca94/hypotize-plugin",
+  "repository": "https://github.com/hypotizeai/hypotize-plugin",
   "license": "MIT",
   "keywords": ["growth", "experimentation", "experiments", "prioritization", "ice", "rice", "learnings", "mcp"],
   "logo": "assets/logo.svg",
