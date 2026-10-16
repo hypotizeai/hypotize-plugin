@@ -1,0 +1,6 @@
+{
+  "hypotize": {
+    "type": "http",
+    "url": "https://api.hypotize.ai/mcp"
+  }
+}

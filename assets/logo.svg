@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-labelledby="title">
+  <title id="title">Hypotize</title>
+  <rect width="512" height="512" fill="hsl(224 64% 33%)"/>
+  <g transform="translate(106 106) scale(12.5)" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M9 4H5v16h4M15 4h4v16h-4"/>
+    <circle cx="12" cy="12" r="2.5" fill="#ffffff" stroke="none"/>
+  </g>
+</svg>

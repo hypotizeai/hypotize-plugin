@@ -1,0 +1,22 @@
+{
+  "name": "hypotize",
+  "owner": {
+    "name": "Hypotize",
+    "email": "hello@hypotize.ai"
+  },
+  "metadata": {
+    "description": "The Hypotize plugin: turns your AI agent into a disciplined growth hacker.",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "hypotize",
+      "description": "The first agentic Growth OS: turns your AI agent into a disciplined growth hacker, with a scored backlog, an enforced lifecycle and a queryable record of learnings.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Hypotize"
+      },
+      "source": "./"
+    }
+  ]
+}

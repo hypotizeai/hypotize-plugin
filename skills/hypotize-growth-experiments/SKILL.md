@@ -1,0 +1,145 @@
+---
+name: hypotize-growth-experiments
+description: Run growth experiments on Hypotize the proper way, through its MCP tools. Use whenever the user asks to propose, score, start, update, or close a growth experiment, check what the team already tested, or work with the Hypotize backlog, pipeline, or learnings. Covers the enforced lifecycle, ICE voting, outcome recording, and how to react when the server refuses a write.
+---
+
+# Hypotize: run the experiment properly
+
+Hypotize is a growth experiment system with an enforced method. You have 21 MCP tools:
+7 read the record, 12 write to it, and 2 delete from it (`hypotize_experiment_delete`,
+`hypotize_project_delete`). The delete tools only exist if the user granted the
+`hypotize:delete` scope at connection, off by default. If they are missing from your
+tool list, the scope was not granted: do not insist and do not try to work around it,
+for example by archiving instead. Every write passes server-side validation. When the
+server refuses a call, that refusal is the product working: read the error, fix the
+input, do not work around it.
+
+## The one rule above all others
+
+**Never declare an experiment outcome the record does not support.** If the user asks
+"did the test win?" and the experiment has no recorded result, the honest answer is
+"it is still open, there is no measured result yet". Do not guess, do not extrapolate,
+do not mark it done. Ask for the number and the evidence, then close it properly.
+
+## Before proposing anything: read first
+
+Read `hypotize_project_get` for project context. When it or `hypotize_experiment_get`
+returns `writing_instruction`, follow it for every free-text field, including titles,
+hypotheses, outcomes, learnings, next steps, and comments. `hypotize_project_update`
+can set or change the project's `language` when the user requests it.
+
+Every proposal starts with two reads. Skipping them creates duplicates and repeats
+failed tests.
+
+1. `hypotize_experiments_list` (filter by relevant `tags` or `funnel`): does this idea
+   already exist in the backlog or pipeline?
+2. `hypotize_learnings_list`: has a similar test already been run? Cite what you find:
+   "a similar test closed as Lose in March: [learning]". A repeat of a failed test needs
+   a reason why this time is different.
+
+If the idea already exists, say so and stop. Do not create a near-duplicate.
+
+## Creating an idea
+
+Use `hypotize_idea_create`. A useful idea has more than a title:
+
+- `title`: short, specific, names the change (max 240 chars).
+- `short_idea`: what to change and where (required).
+- `hypothesis`: "We believe [change] will [effect] for [segment] because [reasoning]".
+- `target_metric` and `success_metric`: the number that decides, and the threshold.
+- `funnel`: one of `Awareness`, `Acquisition`, `Activation`, `Revenue`, `Retention`, `Referral`.
+- `tags`: reuse existing tags from the backlog before inventing new ones.
+- `variants`: record each test arm as `{ key, name, is_control, sample_size? }`.
+  Use unique keys and at most one control. Keep the array empty for tests without
+  variants; do not invent sample sizes. Update it as measured counts become available.
+
+If the user gives only a vague idea, draft the hypothesis and metrics yourself and show
+them for confirmation. An idea without a success metric will stall at Analyzing.
+
+## Scoring
+
+`hypotize_vote_upsert` records YOUR vote in the framework the experiment uses.
+Send that framework's dimensions, each an integer 1 to 10:
+
+- ICE: `impact`, `confidence`, `ease`
+- PIE: `potential`, `importance`, `ease`
+- RICE: `reach`, `impact`, `confidence`, `effort`
+- Custom frameworks: the dimensions the team defined. Read the experiment first,
+  and if a dimension is unclear, ask instead of guessing.
+
+The server rejects a vote whose dimensions do not match the experiment's
+framework (`INVALID_DIMENSIONS`). Votes aggregate into the priority with the
+framework's own formula. Rules:
+
+- Confidence-type dimensions must be backed by evidence: prior tests, data,
+  observed behavior. Enthusiasm is not evidence; without any, score 3 or less.
+- Add a `note` explaining the vote, so the team can challenge it.
+
+## Moving work forward
+
+`hypotize_experiment_transition` moves one stage at a time. Valid transitions:
+
+```
+Idea → Approved → Ready → Running → Analyzing → Winning | Failed | Inconclusive → Learned
+(any stage → Archived)
+```
+
+- You cannot skip stages. `Idea → Running` is rejected: go through Approved and Ready.
+- You can move back to any earlier stage except Idea, to fix a mistake or reopen a test.
+  Moving a closed experiment back to an open stage drops its result; before Analyzing
+  it also clears `ended_at`. `actual_result` and `learning_summary` stay. Archived is final.
+- Only move to Running when the test is actually live. Ask if unsure.
+- Record interim readings with `hypotize_comment_add`, including the numbers and
+  observation context. Comments are dated automatically; `hypotize_experiment_get`
+  returns the latest 50, newest first, plus the total count.
+- Leaving Running (including the legacy Testing status) sets `ended_at` if absent.
+  Record the actual end with `hypotize_experiment_update` or `record_outcome` when it
+  differs from the transition time. `due_date` remains the planned end.
+- Reaching a final status (`Winning`, `Failed`, `Inconclusive`, `Learned`) requires an
+  actual result and a learning summary on the record. Without them the server answers
+  `OUTCOME_REQUIRED`. That is the point of using `hypotize_experiment_record_outcome`
+  instead of forcing a transition.
+
+## Closing an experiment
+
+Use `hypotize_experiment_record_outcome`, one atomic call:
+
+- `result`: `Win`, `Lose`, or `Neutral`. As measured, not as hoped.
+- `actual_result`: the measured number with its baseline ("checkout completion 4.8% → 5.4%").
+- `learning_summary`: what the team now knows that it did not before. Write it so it is
+  useful to someone who was not in the test: cause, not just outcome.
+- `evidence_links`: URLs, file paths, or external IDs for the evidence that proves the number.
+- `winner_variant`: the winning variant's key, only when the evidence supports it.
+  Use `null` to clear a previously recorded winner; omit it to leave it unchanged.
+- `ended_at`: actual end of data collection, on or after `start_date`. Record it even
+  when the test stopped early; do not replace the planned `due_date` with it.
+- `final_status`: `Winning`, `Failed`, or `Inconclusive` (or `Learned`).
+- `next_steps`: what this result makes worth trying next.
+
+A `Lose` with a sharp learning is a successful record. Never soften a loss into Neutral.
+Omitting `next_steps` or `evidence_links` in `record_outcome` clears them; include the
+current values if they should survive. Use `hypotize_experiment_update` for text-only
+corrections to a closed test: its outcome and learning must stay non-empty, and changing
+`result` still requires `record_outcome`.
+
+## Mechanics every write needs
+
+- `idempotency_key`: required on every write (min 8 chars). Generate one per logical
+  operation and reuse it on retry, so a retry cannot double-create.
+- `expected_updated_at`: required on update, transition, outcome, and action plan calls.
+  Get it from `hypotize_experiment_get` immediately before writing. If the server
+  rejects the write because the record changed, re-read and re-apply on the fresh state;
+  never blind-retry with a guessed timestamp.
+
+## When the server says no
+
+Common refusals and the correct reaction:
+
+| Error | Meaning | What to do |
+|---|---|---|
+| `OUTCOME_REQUIRED` | Final status without result + learning | Ask the user for the measured result, then `record_outcome` |
+| Invalid transition | Stage skipped | Move through the intermediate stages, one call each |
+| Stale `expected_updated_at` | Someone else edited | Re-read with `experiment_get`, merge, retry |
+
+Report refusals to the user as what they are: "Hypotize will not close this without a
+measured result", not as a tool malfunction.
