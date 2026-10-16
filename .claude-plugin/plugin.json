@@ -8,6 +8,11 @@
     "url": "https://hypotize.ai"
   },
   "homepage": "https://hypotize.ai/mcp",
+  "repository": "https://github.com/hypotizeai/hypotize-plugin",
+  "documentationUrl": "https://hypotize.ai/mcp",
+  "supportUrl": "mailto:hello@hypotize.ai",
+  "privacyPolicyUrl": "https://hypotize.ai/privacy",
+  "termsOfServiceUrl": "https://hypotize.ai/terms",
   "license": "MIT",
   "keywords": [
     "growth",
