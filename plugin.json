@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "hypotize",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "The first agentic Growth OS: turns your AI agent into a disciplined growth hacker, with a scored backlog, an enforced lifecycle and a queryable record of learnings.",
   "author": {
     "name": "Hypotize",
