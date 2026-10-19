@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "hypotize",
-  "version": "1.1.0",
-  "description": "The first agentic Growth OS: turns your AI agent into a disciplined growth hacker, with a scored backlog, an enforced lifecycle and a queryable record of learnings.",
+  "version": "1.1.1",
+  "description": "The agent-native Growth OS: turns your AI agent into a disciplined growth hacker, with a scored backlog, an enforced lifecycle and a queryable record of learnings.",
   "author": {
     "name": "Hypotize",
     "email": "hello@hypotize.ai",
@@ -25,7 +25,7 @@
       "interface": {
         "displayName": "Hypotize",
         "shortDescription": "Growth experiments, run right",
-        "longDescription": "Hypotize is the first agentic Growth OS. Your agent reads the team's experiment backlog before proposing, writes hypothesis-first ideas, scores them with ICE, PIE, RICE or a custom framework, moves experiments through an enforced lifecycle and records measured outcomes and learnings. The plugin bundles the Hypotize MCP server (21 tools, OAuth) and three skills: the experiment method, a weekly pipeline review and a backlog import from spreadsheets or Notion. Hypotize does not run A/B tests: it keeps the record before and after they run.",
+        "longDescription": "Hypotize is the agent-native Growth OS. Your agent reads the team's experiment backlog before proposing, writes hypothesis-first ideas, scores them with ICE, PIE, RICE or a custom framework, moves experiments through an enforced lifecycle and records measured outcomes and learnings. The plugin bundles the Hypotize MCP server (21 tools, OAuth) and three skills: the experiment method, a weekly pipeline review and a backlog import from spreadsheets or Notion. Hypotize does not run A/B tests: it keeps the record before and after they run.",
         "developerName": "Hypotize",
         "category": "Productivity",
         "capabilities": [

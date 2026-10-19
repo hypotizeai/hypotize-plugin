@@ -1,6 +1,6 @@
 # Hypotize plugin
 
-Turn your AI agent into a disciplined growth hacker. This plugin connects Claude, Codex, ChatGPT, Cursor, Grok Bot and other Agent Plugins clients to [Hypotize](https://hypotize.ai), the first agentic Growth OS.
+Turn your AI agent into a disciplined growth hacker. This plugin connects Claude, Codex, ChatGPT, Cursor, Grok Bot and other Agent Plugins clients to [Hypotize](https://hypotize.ai), the agent-native Growth OS.
 
 Your agent reads the team's experiment backlog before proposing, writes hypothesis-first ideas, scores them with ICE, PIE, RICE or a custom framework, moves experiments through an enforced lifecycle and records measured outcomes and learnings.
 

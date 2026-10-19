@@ -17,8 +17,9 @@ work or closes tests on its own: flag, propose, and let a person decide.
    - `["Approved", "Ready"]`: committed but not started
    - `["Running"]`: live now
    - `["Analyzing"]`: finished, waiting for a verdict
-3. `hypotize_learnings_list`: what closed since the last review (compare `updated_after`
-   with the review cadence, typically 7 days).
+3. `hypotize_learnings_list` with `ended_after` set to the start of the review window
+   (typically 7 days ago): what closed since the last review. Tests closed without an
+   `ended_at` do not appear with this filter; list them once without it if you need them.
 
 ## Diagnose
 

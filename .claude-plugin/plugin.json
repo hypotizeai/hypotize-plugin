@@ -1,7 +1,7 @@
 {
   "name": "hypotize",
-  "version": "1.1.0",
-  "description": "The first agentic Growth OS: turns your AI agent into a disciplined growth hacker, with a scored backlog, an enforced lifecycle and a queryable record of learnings.",
+  "version": "1.1.1",
+  "description": "The agent-native Growth OS: turns your AI agent into a disciplined growth hacker, with a scored backlog, an enforced lifecycle and a queryable record of learnings.",
   "author": {
     "name": "Hypotize",
     "email": "hello@hypotize.ai",
