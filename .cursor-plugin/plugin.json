@@ -9,7 +9,7 @@
   "homepage": "https://hypotize.ai/mcp",
   "repository": "https://github.com/hypotizeai/hypotize-plugin",
   "license": "MIT",
-  "keywords": ["growth", "experimentation", "experiments", "prioritization", "ice", "rice", "learnings", "mcp"],
+  "keywords": ["growth", "cro", "conversion-rate-optimization", "ab-testing", "experimentation", "experiments", "experiment-tracking", "prioritization", "ice", "pie", "rice", "learnings", "mcp"],
   "logo": "assets/logo.svg",
   "skills": "skills/",
   "mcpServers": {
