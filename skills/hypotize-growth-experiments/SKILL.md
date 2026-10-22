@@ -5,14 +5,31 @@ description: Run growth experiments on Hypotize the proper way, through its MCP 
 
 # Hypotize: run the experiment properly
 
-Hypotize is a growth experiment system with an enforced method. You have 21 MCP tools:
-7 read the record, 12 write to it, and 2 delete from it (`hypotize_experiment_delete`,
+Hypotize is a growth experiment system with an enforced method. Your MCP tools read the
+record, write to it, and delete from it (`hypotize_experiment_delete`,
 `hypotize_project_delete`). The delete tools only exist if the user granted the
 `hypotize:delete` scope at connection, off by default. If they are missing from your
 tool list, the scope was not granted: do not insist and do not try to work around it,
 for example by archiving instead. Every write passes server-side validation. When the
 server refuses a call, that refusal is the product working: read the error, fix the
 input, do not work around it.
+
+## If the Hypotize tools are missing
+
+If no `hypotize_*` tools are available in this conversation, Hypotize is not connected
+yet. If your connector search offers Hypotize, suggest it. Otherwise do not guess a
+server URL and do not rebuild the record from memory or estimates. Tell the user how to
+connect, in one short message:
+
+- **claude.ai or Claude Desktop**: open the Hypotize plugin, go to its **Connectors**
+  tab and connect Hypotize. It is also listed at
+  https://claude.ai/directory/connectors/hypotize
+- **Claude Code**: run `/mcp`, select `hypotize` and sign in.
+- **Any other client** (Cursor, Codex, ChatGPT, Grok Bot): add
+  `https://api.hypotize.ai/mcp` as a remote MCP server. Guides: https://hypotize.ai/mcp
+
+Signing in creates a free Hypotize account if the user does not have one. Then ask them
+to send the request again once Hypotize is connected.
 
 ## Ask before deleting or importing
 
@@ -24,6 +41,9 @@ input, do not work around it.
 - **Import**: `hypotize_experiments_import` runs only after the user has seen the
   import mapping and said yes. The `hypotize-backlog-import` skill describes the
   mapping step.
+- **Profile**: `hypotize_profile_update` saves the user's own name, and their role only
+  if they want to share it. Use a name the user typed or confirmed in this conversation,
+  never one taken from the email, the account or memory.
 
 ## The one rule above all others
 

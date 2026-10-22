@@ -17,6 +17,23 @@ Two rules hold through every step:
 - **No import without a yes.** Do not call `hypotize_experiments_import` until the
   user has seen the mapping in Step 2 and answered yes in this conversation.
 
+## If the Hypotize tools are missing
+
+If no `hypotize_*` tools are available in this conversation, Hypotize is not connected
+yet. If your connector search offers Hypotize, suggest it. Otherwise do not guess a
+server URL and do not rebuild the record from memory or estimates. Tell the user how to
+connect, in one short message:
+
+- **claude.ai or Claude Desktop**: open the Hypotize plugin, go to its **Connectors**
+  tab and connect Hypotize. It is also listed at
+  https://claude.ai/directory/connectors/hypotize
+- **Claude Code**: run `/mcp`, select `hypotize` and sign in.
+- **Any other client** (Cursor, Codex, ChatGPT, Grok Bot): add
+  `https://api.hypotize.ai/mcp` as a remote MCP server. Guides: https://hypotize.ai/mcp
+
+Signing in creates a free Hypotize account if the user does not have one. Then ask them
+to send the request again once Hypotize is connected.
+
 ## Step 1: read the source and the destination
 
 - Read the full source (sheet, Notion, doc). Do not sample: half an import is worse

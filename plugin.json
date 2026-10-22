@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "hypotize",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "The agent-native Growth OS: turns your AI agent into a disciplined growth hacker, with a scored backlog, an enforced lifecycle and a queryable record of learnings.",
   "author": {
     "name": "Hypotize",
@@ -24,8 +24,8 @@
     "com.openai": {
       "interface": {
         "displayName": "Hypotize",
-        "shortDescription": "Growth experiments, run right",
-        "longDescription": "Hypotize is the agent-native Growth OS. Your agent reads the team's experiment backlog before proposing, writes hypothesis-first ideas, scores them with ICE, PIE, RICE or a custom framework, moves experiments through an enforced lifecycle and records measured outcomes and learnings. The plugin bundles the Hypotize MCP server (21 tools, OAuth) and three skills: the experiment method, a weekly pipeline review and a backlog import from spreadsheets or Notion. Hypotize does not run A/B tests: it keeps the record before and after they run.",
+        "shortDescription": "The agent-native Growth OS",
+        "longDescription": "Hypotize is a growth experiment tracker for growth, product and marketing teams: an agent-native Growth OS that holds the whole growth loop in one place: the idea backlog, prioritization, the experiment pipeline, results and the library of learnings. Your team works in the web app. ChatGPT works on the same record through this plugin.\n\nWith Hypotize connected, ChatGPT reads what the team already tested before proposing anything new. It turns raw ideas into hypothesis-first experiments, scores them with ICE, PIE, RICE or your own framework, writes the action plan and moves each experiment through its stages: Idea, Approved, Ready, Running, Analyzing, then a measured outcome. When a test ends, it records the result and the learning, so the next conversation starts from what you already know.\n\nBuilt for teams. Teammates vote on ideas and comment on experiments, and ChatGPT can do both for you. Each product or market lives in its own project.\n\nThe server enforces the method. An experiment cannot skip a stage or close without a result and a learning, whether a person or ChatGPT is writing. ChatGPT acts with your role in each project. Delete access stays off unless you grant it when connecting, and ChatGPT never touches billing or members.\n\nThe plugin includes three skills: the experiment method, a read-only weekly pipeline review and a backlog import from a spreadsheet or a Notion export.\n\nGetting started: sign in with Google or email when you connect.\n\nHypotize does not assign traffic or run A/B tests. Keep your analytics and experimentation tools. Hypotize keeps the record before and after.",
         "developerName": "Hypotize",
         "category": "Productivity",
         "capabilities": [
@@ -39,13 +39,15 @@
         "privacyPolicyURL": "https://hypotize.ai/privacy",
         "termsOfServiceURL": "https://hypotize.ai/terms",
         "defaultPrompt": [
-          "Review our experiment pipeline and tell me what needs a decision this week",
-          "Propose three experiments to improve activation, checking what we already tested",
-          "Import our growth backlog from this spreadsheet into Hypotize"
+          "What have we already tested on onboarding, and what did we learn?",
+          "Run the weekly review: which tests are waiting for a verdict or overdue?",
+          "Turn this spreadsheet backlog into scored experiments in Hypotize"
         ],
         "brandColor": "#1E3B8A",
-        "screenshots": []
-      }
+        "screenshots": [],
+        "supportURL": "https://hypotize.ai/mcp"
+      },
+      "onboardingSkill": "./skills/hypotize-growth-experiments/SKILL.md"
     }
   }
 }

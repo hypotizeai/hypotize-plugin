@@ -6,13 +6,13 @@
   },
   "metadata": {
     "description": "The Hypotize plugin: turns your AI agent into a disciplined growth hacker.",
-    "version": "1.1.1"
+    "version": "1.1.2"
   },
   "plugins": [
     {
       "name": "hypotize",
       "description": "The agent-native Growth OS: turns your AI agent into a disciplined growth hacker, with a scored backlog, an enforced lifecycle and a queryable record of learnings.",
-      "version": "1.1.1",
+      "version": "1.1.2",
       "author": {
         "name": "Hypotize"
       },

@@ -6,7 +6,7 @@ Your agent reads the team's experiment backlog before proposing, writes hypothes
 
 ## What is inside
 
-- **MCP server**: `https://api.hypotize.ai/mcp`, 21 tools, OAuth 2.1. You sign in to Hypotize the first time the agent uses it.
+- **MCP server**: `https://api.hypotize.ai/mcp`, OAuth 2.1. You sign in to Hypotize the first time the agent uses it.
 - **Skills**:
   - `hypotize-growth-experiments`: the method. Read before proposing, vote with evidence, follow the lifecycle, close with a measured result.
   - `hypotize-weekly-review`: a read-only pipeline review that ends with what needs a decision.
@@ -16,7 +16,8 @@ Hypotize does not run A/B tests or assign traffic. It keeps the record before an
 
 ## Install
 
-- **Claude Code**: `/plugin marketplace add hypotizeai/hypotize-plugin`, then `/plugin install hypotize`.
+- **claude.ai and Claude Desktop**: install Hypotize from the [directory](https://claude.ai/directory/connectors/hypotize), then open the plugin's **Connectors** tab and connect Hypotize. Installing the plugin alone does not connect it.
+- **Claude Code**: `/plugin marketplace add hypotizeai/hypotize-plugin`, then `/plugin install hypotize`. Run `/mcp`, select `hypotize` and sign in.
 - **Codex**: `codex plugin marketplace add hypotizeai/hypotize-plugin`.
 - **Cursor**: install Hypotize from the Cursor Marketplace, or add `https://api.hypotize.ai/mcp` in Settings → MCP.
 - **Grok Bot**: open Connect apps and add Hypotize. If it is not listed yet, add a custom MCP server with `https://api.hypotize.ai/mcp`.
