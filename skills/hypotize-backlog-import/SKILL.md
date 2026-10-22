@@ -19,20 +19,27 @@ Two rules hold through every step:
 
 ## If the Hypotize tools are missing
 
-If no `hypotize_*` tools are available in this conversation, Hypotize is not connected
-yet. If your connector search offers Hypotize, suggest it. Otherwise do not guess a
-server URL and do not rebuild the record from memory or estimates. Tell the user how to
-connect, in one short message:
+If no `hypotize_*` tools are available, Hypotize is not connected in this client yet.
+Do not guess a server URL and do not rebuild the record from memory or estimates. If
+your client can search a connector directory and it finds Hypotize, suggest that.
+Otherwise tell the user how to connect, in one short message, with the step for the
+client they are using:
 
 - **claude.ai or Claude Desktop**: open the Hypotize plugin, go to its **Connectors**
   tab and connect Hypotize. It is also listed at
   https://claude.ai/directory/connectors/hypotize
 - **Claude Code**: run `/mcp`, select `hypotize` and sign in.
-- **Any other client** (Cursor, Codex, ChatGPT, Grok Bot): add
-  `https://api.hypotize.ai/mcp` as a remote MCP server. Guides: https://hypotize.ai/mcp
+- **Codex**: run `codex mcp login hypotize`, or sign in when Codex asks.
+- **ChatGPT**: Settings, Plugins, add a custom MCP server with `https://api.hypotize.ai/mcp`.
+- **Cursor**: Settings, MCP: add `https://api.hypotize.ai/mcp`, or install Hypotize
+  from the Cursor Marketplace, then sign in.
+- **Grok Bot**: Connect apps, Hypotize. If it is not listed, add a custom MCP server
+  with `https://api.hypotize.ai/mcp`.
+- **Any other MCP client**: add `https://api.hypotize.ai/mcp` as a remote MCP server.
 
-Signing in creates a free Hypotize account if the user does not have one. Then ask them
-to send the request again once Hypotize is connected.
+Setup guides for every client: https://hypotize.ai/mcp. Signing in creates a free
+Hypotize account if the user does not have one. Then ask them to send the request again
+once Hypotize is connected.
 
 ## Step 1: read the source and the destination
 
